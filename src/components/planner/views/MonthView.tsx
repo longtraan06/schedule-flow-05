@@ -10,6 +10,7 @@ interface MonthViewProps {
   onSelectDate: (date: Date) => void;
   onUpdateEvent: (eventId: string, updates: Partial<Event>) => void;
   onDeleteEvent: (eventId: string) => void;
+  onSwitchToDayView: (date: Date) => void;
 }
 
 export function MonthView({ 
@@ -17,7 +18,8 @@ export function MonthView({
   selectedDate, 
   onSelectDate, 
   onUpdateEvent, 
-  onDeleteEvent 
+  onDeleteEvent,
+  onSwitchToDayView
 }: MonthViewProps) {
   
   // Calculate calendar grid (6 weeks x 7 days)
@@ -71,8 +73,7 @@ export function MonthView({
   };
 
   const handleDateDoubleClick = (date: Date) => {
-    onSelectDate(date);
-    // This would trigger view change to day view in the parent component
+    onSwitchToDayView(date);
   };
 
   const formatMonthYear = () => {

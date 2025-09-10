@@ -10,6 +10,7 @@ interface WeekViewProps {
   onSelectDate: (date: Date) => void;
   onUpdateEvent: (eventId: string, updates: Partial<Event>) => void;
   onDeleteEvent: (eventId: string) => void;
+  onSwitchToDayView: (date: Date) => void;
 }
 
 export function WeekView({ 
@@ -17,7 +18,8 @@ export function WeekView({
   selectedDate, 
   onSelectDate, 
   onUpdateEvent, 
-  onDeleteEvent 
+  onDeleteEvent,
+  onSwitchToDayView
 }: WeekViewProps) {
   
   // Calculate week dates
@@ -83,8 +85,7 @@ export function WeekView({
   };
 
   const handleDayDoubleClick = (date: Date) => {
-    onSelectDate(date);
-    // This would trigger view change to day view in the parent component
+    onSwitchToDayView(date);
   };
 
   const formatWeekRange = () => {

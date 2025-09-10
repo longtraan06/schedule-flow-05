@@ -77,7 +77,7 @@ const StudyPlanner = () => {
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 flex flex-col min-w-0">
+          <div className="flex-1 flex flex-col min-w-0 pb-12">
             <MainContent 
               events={events}
               selectedDate={selectedDate}
@@ -86,15 +86,16 @@ const StudyPlanner = () => {
               onViewChange={setCurrentView}
               onUpdateEvent={updateEvent}
               onDeleteEvent={deleteEvent}
-            />
-            
-            {/* Bottom Panel */}
-            <BottomPanel 
-              events={events}
-              onDeleteEvent={deleteEvent}
+              onAddEvent={addEvent}
             />
           </div>
         </div>
+
+        {/* Fixed Bottom Panel */}
+        <BottomPanel 
+          events={events}
+          onDeleteEvent={deleteEvent}
+        />
       </SidebarProvider>
     </div>
   );

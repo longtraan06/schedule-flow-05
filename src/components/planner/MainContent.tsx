@@ -13,6 +13,7 @@ interface MainContentProps {
   onViewChange: (view: 'day' | 'week' | 'month') => void;
   onUpdateEvent: (eventId: string, updates: Partial<Event>) => void;
   onDeleteEvent: (eventId: string) => void;
+  onAddEvent: (event: Omit<Event, 'id'>) => void;
 }
 
 export function MainContent({ 
@@ -22,8 +23,14 @@ export function MainContent({
   currentView, 
   onViewChange,
   onUpdateEvent,
-  onDeleteEvent 
+  onDeleteEvent,
+  onAddEvent
 }: MainContentProps) {
+  
+  const handleDayViewSwitch = (date: Date) => {
+    onSelectDate(date);
+    onViewChange('day');
+  };
   
   const getViewIcon = (view: string) => {
     switch (view) {
@@ -67,6 +74,7 @@ export function MainContent({
             onSelectDate={onSelectDate}
             onUpdateEvent={onUpdateEvent}
             onDeleteEvent={onDeleteEvent}
+            onAddEvent={onAddEvent}
           />
         )}
         
@@ -77,6 +85,7 @@ export function MainContent({
             onSelectDate={onSelectDate}
             onUpdateEvent={onUpdateEvent}
             onDeleteEvent={onDeleteEvent}
+            onSwitchToDayView={handleDayViewSwitch}
           />
         )}
         
@@ -87,6 +96,7 @@ export function MainContent({
             onSelectDate={onSelectDate}
             onUpdateEvent={onUpdateEvent}
             onDeleteEvent={onDeleteEvent}
+            onSwitchToDayView={handleDayViewSwitch}
           />
         )}
       </div>
